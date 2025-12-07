@@ -1,0 +1,156 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.m-title {
+  display: flex;
+  justify-content: center;
+  color: #538d4e;
+  margin-top: 40px;
+}
+
+.woO {
+  color: #b59f3b;
+}
+
+.ua {
+  font-size: 12px;
+}
+
+.uaU {
+  color: #0057b8;
+}
+
+.uaA {
+  color: #ffd700;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.full {
+  background-color: #121213;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.cell {
+  width: 62px;
+  height: 62px;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  border: 2px solid #3a3a3c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+.correct {
+  background-color: #538d4e;
+  border: none;
+  width: 62px;
+  height: 62px;
+}
+
+.present {
+  background-color: #b59f3b;
+  border: none;
+  width: 62px;
+  height: 62px;
+}
+
+.absent {
+  background-color: #3a3a3c;
+  border: none;
+  width: 62px;
+  height: 62px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.modal-content {
+  background: #1a1a1b;
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  transform: scale(0.7);
+  animation: popUp 0.4s ease forwards;
+  width: 350px;
+  height: 190px;
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #6aaa64;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#restartBtn {
+  padding: 12px 24px;
+  background: #c9b458;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  position: absolute;
+  left: 10%;
+}
+
+#restartBtn:hover {
+  background: #a8973a;
+}
