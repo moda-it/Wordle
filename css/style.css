@@ -76,6 +76,26 @@
   width: 62px;
   height: 62px;
 }
+.key.present {
+  background-color: #b59f3b;
+  border: none;
+  width: 62px;
+  height: 62px;
+}
+
+.key.correct {
+  background-color: #538d4e;
+  border: none;
+  width: 62px;
+  height: 62px;
+}
+
+.key.absent {
+  background-color: #3a3a3c;
+  border: none;
+  width: 62px;
+  height: 62px;
+}
 
 .modal {
   display: none;
@@ -153,4 +173,30 @@
 
 #restartBtn:hover {
   background: #a8973a;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  gap: 10px;
+}
+
+.key-row {
+  display: flex;
+  gap: 10px;
+}
+
+.key {
+  width: 62px;
+  height: 62px;
+  background-color: #bdbfbd;
+  font-size: 32px;
+  font-weight: bold;
+  color: #323531;
+}
+
+.key.large-key {
+  width: 200px;
 }
