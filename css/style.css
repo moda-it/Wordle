@@ -43,6 +43,67 @@
   margin-bottom: 15px;
 }
 
+/* 2. Flip (Pressing Enter) */
+.flip {
+  /* The animation lasts 0.5s */
+  animation: flip 0.5s ease forwards;
+  /* Change color to green (success) during flip */
+  background-color: #6aaa64;
+  color: white;
+  border-color: #6aaa64;
+}
+.cell.pop-in {
+  border-color: #5e5e61; /* Highlight border */
+  animation: fadePop 0.2s ease-out forwards;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg); /* 90deg is the "flat" point */
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+/* 5. Keyframe Definition */
+@keyframes fadePop {
+  50% {
+    opacity: 1;
+    transform: scale(1.1); /* Slight bounce effect */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes typewriter {
+  0%,
+  100% {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid #3a3a3c;
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 2px solid #538d4e;
+  }
+}
+
 .cell {
   width: 62px;
   height: 62px;

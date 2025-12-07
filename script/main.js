@@ -1,5 +1,6 @@
 const board = document.querySelector(".board");
 const rows = document.querySelectorAll(".row");
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 let secretWord;
 let curRow = 0;
@@ -69,6 +70,15 @@ function Chek() {
   const result = Array(5).fill("absent");
   const freq = {};
 
+  for (let index = 0; index < 5; index++) {
+    const cell = rowCells[index];
+    cell.classList.remove("pop-in");
+    setTimeout(() => {
+      console.log(index, cell, "flip");
+      rowCells[index].classList.add("flip");
+    }, index * 300);
+  }
+
   // рахуємо частоти літер у секреті
   for (let ch of secret) {
     freq[ch] = (freq[ch] || 0) + 1;
@@ -123,6 +133,7 @@ function EnterLetter(letter) {
   if (curCell >= 5) return;
   letter = letter.toUpperCase();
   const rowCells = rows[curRow].querySelectorAll(".cell");
+  rowCells[curCell].classList.add("pop-in");
   console.log(curCell);
   rowCells[curCell].textContent = letter;
   curWord += letter;
@@ -135,6 +146,7 @@ function DeleteLetter() {
   rowCells[curCell].textContent = "";
   curWord = curWord.slice(0, -1);
   console.log("Після Backspace:", curWord);
+  rowCells[curCell].classList.remove("pop-in");
 }
 
 // Функція перезапуску (поза keydown!)
@@ -143,7 +155,8 @@ function restartGame() {
     const rowCells = row.querySelectorAll(".cell");
     rowCells.forEach((cell) => {
       cell.textContent = "";
-      cell.classList.remove("correct", "present", "absent");
+      // cell.classList.remove("correct", "present", "absent");
+      cell.className = "cell";
     });
   });
 
