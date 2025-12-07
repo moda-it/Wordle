@@ -1,11 +1,51 @@
 const board = document.querySelector(".board");
 const rows = document.querySelectorAll(".row");
 
-const secretWord = "ЛАМПА";
-
+let secretWord;
 let curRow = 0;
 let curCell = 0;
 let curWord = "";
+
+fetch("words.json")
+  .then((res) => res.json())
+  .then((words) => {
+    secretWord = words[Math.floor(Math.random() * words.length)];
+    console.log("Secret word:", secretWord);
+  });
+
+document.getElementById("restartBtn").addEventListener("click", (e) => {
+  restartGame();
+  e.target.blur(); // зняти фокус з кнопки
+});
+
+document.getElementById("closeModal").addEventListener("click", () => {
+  document.getElementById("winModal").style.display = "none";
+});
+
+// Функція перезапуску (поза keydown!)
+function restartGame() {
+  rows.forEach((row) => {
+    const rowCells = row.querySelectorAll(".cell");
+    rowCells.forEach((cell) => {
+      cell.textContent = "";
+      cell.classList.remove("correct", "present", "absent");
+    });
+  });
+
+  curRow = 0;
+  curCell = 0;
+  curWord = "";
+
+  // нове випадкове слово
+  fetch("words.json")
+    .then((res) => res.json())
+    .then((words) => {
+      secretWord = words[Math.floor(Math.random() * words.length)];
+      console.log("New secret word:", secretWord);
+    });
+
+  console.log("Гра перезапущена!");
+}
 
 document.addEventListener("keydown", (event) => {
   const key = event.key;
@@ -84,9 +124,6 @@ document.addEventListener("keydown", (event) => {
         modal.style.display = "flex";
       }
 
-      document.getElementById("closeModal").addEventListener("click", () => {
-        document.getElementById("winModal").style.display = "none";
-      });
       // перехід до наступного рядка
       curRow++;
       curCell = 0;
@@ -99,29 +136,4 @@ document.addEventListener("keydown", (event) => {
       console.log("Word must be 5 letters long");
     }
   }
-});
-
-// Логіка перезапуску (окремо!)
-document.getElementById("restartBtn").addEventListener("click", () => {
-  // 1. Очистити всі клітинки
-  rows.forEach((row) => {
-    const rowCells = row.querySelectorAll(".cell");
-    rowCells.forEach((cell) => {
-      cell.textContent = "";
-      cell.classList.remove("correct", "present", "absent");
-    });
-  });
-
-  // 2. Скинути змінні
-  curRow = 0;
-  curCell = 0;
-  curWord = "";
-
-  // 3. Сховати модальне вікно (якщо було)
-  const modal = document.getElementById("winModal");
-  if (modal) {
-    modal.style.display = "none";
-  }
-
-  console.log("Гра перезапущена!");
 });
